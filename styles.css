@@ -1,0 +1,45 @@
+/* Thay đổi font toàn trang */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+  }
+  
+  /* Header */
+  header {
+    background-color: lightblue;
+  }
+  
+  /* Navigation */
+  nav {
+    background-color: #eee;
+  }
+  
+  /* Main content */
+  main {
+    background-color: #fafafa;
+    font-size: 18px;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: lightgray;
+  }
+  
+  /* Danh sách menu */
+  li {
+    display: inline-block;
+    width: 100px;
+  }
+  
+  /* Tiêu đề chính */
+  h1 {
+    text-align: center;
+    font-family: 'Georgia', serif;
+    color: darkblue;
+  }
+  
+  /* Đoạn văn */
+  p {
+    line-height: 1.5;
+  }
+  

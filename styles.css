@@ -42,4 +42,53 @@ body {
   p {
     line-height: 1.5;
   }
+.skip {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.skip:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  background-color: yellow;
+  padding: 10px;
+}
+li {
+  display: inline-block;
+  width: 100px;
+}
+/* li {
+  display: inline-block;
+  width: 100px;
+} */
+nav {
+  display: inline-block;
+  width: 80%;
+}
+nav img {
+  width: 10%;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 40% 40%;
+  justify-content: space-around;
+  align-items: center;
+  row-gap: 20px;
+}
+.grid img {
+  width: 100%;
+}
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+
   

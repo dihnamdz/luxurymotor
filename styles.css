@@ -17,7 +17,11 @@ body {
   /* Main content */
   main {
     background-color: #fafafa;
-    font-size: 18px;
+  font-size: 18px;
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
   }
   
   /* Footer */
@@ -42,53 +46,32 @@ body {
   p {
     line-height: 1.5;
   }
-.skip {
-  position: absolute;
-  left: -999px;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
-
-.skip:focus {
-  position: static;
-  width: auto;
-  height: auto;
-  background-color: yellow;
-  padding: 10px;
-}
-li {
-  display: inline-block;
-  width: 100px;
-}
-/* li {
-  display: inline-block;
-  width: 100px;
-} */
-nav {
-  display: inline-block;
-  width: 80%;
-}
-nav img {
-  width: 10%;
-}
-.grid {
-  display: grid;
-  grid-template-columns: 40% 40%;
-  justify-content: space-around;
-  align-items: center;
-  row-gap: 20px;
-}
-.grid img {
-  width: 100%;
-}
-.flex {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
-
-
   
+  .skip {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .skip:focus {
+    left: 10px; /* hoặc center top */
+    top: 10px;
+    width: auto;
+    height: auto;
+    padding: 8px 12px;
+    background: #000;
+    color: #fff;
+    z-index: 1000;
+  }
+nav ul { display:flex; gap:1rem; list-style:none; padding:0; margin:0; }
+nav a { padding:8px 12px; text-decoration:none; border-radius:6px; }
+nav a:focus, nav a:hover { outline: none; box-shadow: 0 0 0 3px rgba(0,0,0,0.15); transform: translateY(-2px); transition: all .2s; }
+/* nth-child cho menu, đổi màu xen kẽ */
+nav li:nth-child(odd) {
+  background-color: #f0f8ff;
+}
+nav li:nth-child(even) {
+  background-color: #e6f2ff;
+}

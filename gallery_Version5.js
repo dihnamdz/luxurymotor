@@ -1,12 +1,20 @@
-// gallery.js
-// Tạo vùng xem trước và gắn xử lý sự kiện cho các ảnh có class "product-image"
-// Dựa trên cấu trúc của index.html trong repo (images có class product-image, section id="sanpham")
+// gallery_Version5.js (updated)
+// Adds keyboard accessibility and automatic tabindex to <figure> items.
+// Preserves existing preview behavior (mouseover, mouseout, click).
+// - Adds focus/blur handlers (mirror mouseover/mouseout).
+// - Adds keyboard activation (Enter / Space).
+// - Adds a window 'load' handler that loops through figures and sets tabindex="0".
+// - Logs to console for each important event so you can confirm behavior in devtools.
 
+/* eslint-disable no-console */
 (function () {
   // Văn bản mặc định (tiếng Việt)
   var DEFAULT_TEXT = "Di chuột qua hình ảnh bên dưới để hiển thị tại đây";
 
-  // Chờ DOM sẵn sàng
+  // Lưu tham chiếu global cho vùng xem trước
+  var displayDiv = null;
+
+  // Tạo vùng preview khi DOM sẵn sàng (như trước)
   document.addEventListener('DOMContentLoaded', function () {
     // Tìm section "sanpham" để chèn vùng hiển thị trước nó
     var sanpham = document.getElementById('sanpham');
@@ -16,7 +24,7 @@
     }
 
     // Nếu đã có div#image (ví dụ bạn đã thêm thủ công trong HTML), dùng nó; nếu chưa, tạo mới
-    var displayDiv = document.getElementById('image');
+    displayDiv = document.getElementById('image');
     if (!displayDiv) {
       displayDiv = document.createElement('div');
       displayDiv.id = 'image';
@@ -53,7 +61,6 @@
 
     // Lưu tham chiếu để các hàm upDate/undo sử dụng
     window.__galleryPreviewDiv = displayDiv;
-    // Lưu text gốc để undo có thể khôi phục (nếu người dùng đã đặt text khác)
     window.__galleryOriginalText = displayDiv.textContent || DEFAULT_TEXT;
 
     // Gắn event listeners cho tất cả ảnh thumbnail có class 'product-image'
@@ -64,11 +71,11 @@
     }
 
     thumbs.forEach(function (img) {
-      // use mouseover/mouseout for desktop
+      // mouse events for desktop
       img.addEventListener('mouseover', function () { upDate(img); });
       img.addEventListener('mouseout', undo);
 
-      // optional: touch devices - tap to show (toggles)
+      // click: useful for touch and mouse users
       img.addEventListener('click', function (e) {
         // trên thiết bị cảm ứng, click sẽ gọi upDate và ngăn chặn link mặc định nếu có
         upDate(img);
@@ -84,34 +91,106 @@
       return;
     }
 
-    var displayDiv = window.__galleryPreviewDiv || document.getElementById('image');
-    if (!displayDiv) {
+    var display = window.__galleryPreviewDiv || document.getElementById('image');
+    if (!display) {
       console.error('upDate: không tìm thấy phần tử #image');
       return;
     }
 
     // Hiển thị ảnh làm background (bọc src trong dấu nháy đơn để an toàn)
-    displayDiv.style.backgroundImage = "url('" + previewPic.src + "')";
+    display.style.backgroundImage = "url('" + previewPic.src + "')";
 
     // Nếu muốn giữ văn bản overlay (mô tả), đặt alt vào textContent
     var text = previewPic.alt || '';
-    displayDiv.textContent = text;
+    display.textContent = text;
   };
 
-  // Hàm hoàn tác khi chuột rời ảnh
+  // Hàm hoàn tác khi chuột rời ảnh hoặc blur
   window.undo = function () {
     console.log('undo được gọi');
-    var displayDiv = window.__galleryPreviewDiv || document.getElementById('image');
-    if (!displayDiv) {
+    var display = window.__galleryPreviewDiv || document.getElementById('image');
+    if (!display) {
       console.error('undo: không tìm thấy phần tử #image');
       return;
     }
 
-    // Reset background-image về giá trị gốc theo yêu cầu: background-image: url('')
-    displayDiv.style.backgroundImage = "url('')";
+    // Reset background-image về giá trị rỗng
+    display.style.backgroundImage = "url('')";
 
     // Khôi phục lại văn bản gốc (nếu có), ngược lại dùng DEFAULT_TEXT
-    displayDiv.textContent = window.__galleryOriginalText || DEFAULT_TEXT;
+    display.textContent = window.__galleryOriginalText || DEFAULT_TEXT;
   };
+
+  // --- New: add tabindex and keyboard/focus handlers on window load ---
+  window.addEventListener('load', function addTabindexToFigures() {
+    console.log('load event fired: adding tabindex and keyboard handlers to <figure> items');
+
+    var figures = document.querySelectorAll('#sanpham figure');
+    if (!figures || figures.length === 0) {
+      console.warn('addTabindexToFigures: Không tìm thấy <figure> trong #sanpham.');
+      return;
+    }
+
+    // Loop through each figure and add tabindex, role, and focus/blur/keydown handlers
+    for (var i = 0; i < figures.length; i++) {
+      (function (index) {
+        var fig = figures[index];
+
+        // add tabindex if missing
+        if (!fig.hasAttribute('tabindex')) {
+          fig.setAttribute('tabindex', '0');
+          console.log('tabindex added to figure index:', index, 'caption:', fig.querySelector('figcaption')?.textContent || '');
+        }
+
+        // set role to button to indicate activation; keep it non-intrusive
+        if (!fig.hasAttribute('role')) {
+          fig.setAttribute('role', 'button');
+        }
+
+        // Focus handler (mirror mouseover)
+        fig.addEventListener('focus', function () {
+          console.log('figure focused (index):', index);
+          // Prefer the thumbnail image inside the figure
+          var img = fig.querySelector('img') || null;
+          if (img) {
+            upDate(img);
+          } else {
+            // fallback: add a CSS class highlight (if you style it)
+            console.log('focus: no img found inside figure', fig);
+          }
+        });
+
+        // Blur handler (mirror mouseout)
+        fig.addEventListener('blur', function () {
+          console.log('figure blur (index):', index);
+          undo();
+        });
+
+        // Keyboard activation: Enter or Space triggers preview (same as click)
+        fig.addEventListener('keydown', function (e) {
+          var key = e.key;
+          if (key === 'Enter' || key === ' ') {
+            e.preventDefault();
+            console.log('figure activated by keyboard (index):', index);
+            var img2 = fig.querySelector('img') || null;
+            if (img2) {
+              upDate(img2);
+            }
+          }
+        });
+
+        // Make the figure clickable via click too (if not already handled on the img)
+        fig.addEventListener('click', function (ev) {
+          console.log('figure clicked (index):', index);
+          var img3 = fig.querySelector('img') || null;
+          if (img3) {
+            upDate(img3);
+          }
+        });
+      })(i);
+    }
+
+    console.log('addTabindexToFigures: Completed; total figures processed =', figures.length);
+  });
 
 })();

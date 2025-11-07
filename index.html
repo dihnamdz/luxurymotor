@@ -2,261 +2,169 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>LUXURY MOTORS - Trải nghiệm Đẳng cấp</title>
-    <style>
-        /* Thiết lập font chữ hiện đại */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0a0a0a; /* Nền tối sang trọng */
-            color: #f0f0f0; /* Chữ sáng */
-            line-height: 1.6;
-        }
-
-        /* Định nghĩa style cho liên kết trong nav */
-        nav a {
-            transition: color 0.3s;
-            padding: 8px 16px;
-            border-radius: 8px;
-        }
-
-        nav a:hover {
-            color: #ffffff;
-            background-color: #333333;
-        }
-
-        /* Đảm bảo hình ảnh responsive */
-        .product-image {
-            transition: transform 0.3s ease-in-out;
-        }
-        .product-image:hover {
-            transform: scale(1.05);
-        }
-
-        /* Style cho phần form */
-        #lienhe input[type="text"], 
-        #lienhe input[type="email"], 
-        #lienhe textarea {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            margin-bottom: 15px;
-            border-radius: 4px;
-            border: 1px solid #333;
-            background-color: #1a1a1a;
-            color: #f0f0f0;
-        }
-        
-        #lienhe button {
-            background-color: #ccac00; /* Màu vàng kim sang trọng */
-            color: #0a0a0a;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        
-        #lienhe button:hover {
-            background-color: #ffde2e;
-        }
-
-        /* Sửa lỗi CSS trong code cũ */
-        .figure-caption {
-            font-weight: bold;
-            color: #ccac00; /* Sử dụng màu vàng kim thống nhất */
-            margin-top: 5px;
-            display: block;
-        }
-        
-    </style>
+    <title>Nam Auto - Thế Giới Xe Hơi</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="mx-auto">
-    <a href="#maincontent" class="skip">Skip to Main Content</a>
+<body>
 
-    
-    <!-- Banner chính (Đã thay thế bằng ảnh sang trọng) -->
-    <div class="w-full max-w-7xl mx-auto rounded-lg overflow-hidden shadow-2xl mt-4">
-        <img src="image/banner.png" alt="Banner quảng cáo xe ô tô sang trọng" class="w-full h-auto object-cover" style="max-height: 500px;">
-    </div>
+    <a href="#" id="backToTopBtn" title="Về đầu trang">&uarr;</a>
 
-    <!-- Header và Navigation -->
-    <header class="bg-gray-900 shadow-md p-4 sticky top-0 z-10 border-b border-gray-800">
-        <div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto">
-            <h1 class="text-3xl font-extrabold text-[#ccac00] mb-3 md:mb-0">LUXURY MOTORS</h1>
-            <nav>
-                <ul class="flex space-x-4 text-lg font-medium">
-                    <li><a href="about.html" class="text-gray-300 hover:text-white">Giới thiệu</a></li>
-                    <li><a href="#sanpham" class="text-gray-300 hover:text-white">Sản phẩm</a></li>
-                    <li><a href="contact.html" class="text-gray-300 hover:text-white">Liên hệ</a></li>
-                </ul>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="#">Nam Auto</a>
+            </div>
+            
+            <nav class="nav-desktop">
+                <a href="#home">Trang chủ</a>
+                <a href="#inventory">Xe Của Chúng Tôi</a>
+                <a href="#contact">Liên Hệ</a>
             </nav>
+            
+            <button id="menuToggleBtn" class="nav-toggle" aria-label="Mở menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
 
-    <!-- Nội dung chính của trang -->
-    <main id="maincontent" class="max-w-7xl mx-auto p-4 md:p-8">
-        
-        <!-- Giới thiệu (SỬA LỖI: SỬ DỤNG H2 VÀ P HỢP LÝ) -->
-        <section id="gioithieu" class="mb-12 pt-8">
-            <h2 class="text-4xl font-bold mb-6 border-b border-[#ccac00] pb-2">Về Chúng Tôi</h2>
-            <p class="text-xl italic text-gray-300 mb-8">
-                Chúng tôi chuyên cung cấp xe sang nhập khẩu uy tín từ các nước châu Âu với mức giá ưu đãi nhất thị trường, cùng chính sách khuyến mãi và bảo hành siêu ưu đãi cho khách hàng.
-            </p>
+    <nav class="nav-mobile" id="mobileMenu">
+        <a href="#home">Trang chủ</a>
+        <a href="#inventory">Xe Của Chúng Tôi</a>
+        <a href="#contact">Liên Hệ</a>
+    </nav>
+
+    <main id="home" class="site-main container">
+
+        <article class="main-content">
             
-            <h3 class="text-2xl font-semibold mb-4 text-[#ccac00]">Các Thương Hiệu Chúng Tôi Cung Cấp</h3>
-            <!-- Danh sách với ít nhất 3 mục -->
-            <ul class="list-disc list-inside ml-5 space-y-2 text-lg">
-                <li>LAMBORGHINI - Sức mạnh đỉnh cao</li>
-                <li>AUDI - Thiết kế tinh xảo</li>
-                <li>MERCEDES - Đẳng cấp bền vững</li>
-            </ul>
-        </section>
-
-        <hr class="border-gray-800 my-10">
-        
-        <!-- Danh sách Sản phẩm -->
-        <section id="sanpham" class="pt-8">
-            <h2 class="text-4xl font-bold mb-8 text-center text-white">DANH MỤC SẢN PHẨM</h2>
-            
-            <!-- Danh sách mô hình xe -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- 1. LAMBORGHINI -->
-                <div class="bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-800">
-                    <h3 class="text-3xl font-bold mb-4 text-center text-red-600">LAMBORGHINI</h3>
-                    
-                    <figure class="text-center mb-6">
-                        <img src="https://oto360.net/images/manufacturer/Lamborghini/Lamborghini_Aventador.webp" 
-                             class="w-full h-auto max-w-sm mx-auto product-image rounded-lg" 
-                             alt="Lamborghini Aventador" 
-                             loading="lazy">
-                        <figcaption class="figure-caption">Lamborghini Aventador</figcaption>
-                    </figure>
-                    
-                    <figure class="text-center">
-                        <img src="https://oto360.net/images/manufacturer/Lamborghini/LamborghiniHuracanLP610_4.webp" 
-                             class="w-full h-auto max-w-sm mx-auto product-image rounded-lg" 
-                             alt="Lamborghini Huracan" 
-                             loading="lazy">
-                        <figcaption class="figure-caption">Lamborghini Huracan</figcaption>
-                    </figure>
+            <section class="hero-section">
+                <div class="hero-image">
+                    <img src="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Xe hơi sang trọng">
                 </div>
-
-                <!-- 2. AUDI -->
-                <div class="bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-800">
-                    <h3 class="text-3xl font-bold mb-4 text-center text-blue-500">AUDI</h3>
-
-                    <figure class="text-center mb-6">
-                        <!-- Đã sửa lỗi width: 1005 thành width: 100% -->
-                        <img src="https://cdn.oto360.net/images/car/audi/q2.icon.webp" 
-                             class="w-full h-auto max-w-sm mx-auto product-image rounded-lg" 
-                             alt="Audi Q2" 
-                             loading="lazy">
-                        <figcaption class="figure-caption">Audi Q2</figcaption>
-                    </figure>
-
-                    <figure class="text-center">
-                        <!-- Đã sửa lỗi width: 1005 thành width: 100% -->
-                        <img src="https://cdn.oto360.net/images/car/audi/a4.icon.webp" 
-                             class="w-full h-auto max-w-sm mx-auto product-image rounded-lg" 
-                             alt="Audi A4" 
-                             loading="lazy">
-                        <figcaption class="figure-caption">Audi A4</figcaption>
-                    </figure>
+                <div class="hero-text">
+                    <h1>Main Title: Tìm Chiếc Xe Mơ Ước</h1>
+                    <p>Subtitle: Duyệt qua các mẫu xe mới và đã qua sử dụng tốt nhất.</p>
                 </div>
+            </section>
 
-                <!-- 3. MERCEDES -->
-                <div class="bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-800">
-                    <h3 class="text-3xl font-bold mb-4 text-center text-gray-400">MERCEDES</h3>
-
-                    <figure class="text-center mb-6">
-                        <!-- Đã sửa lỗi width: 1005 thành width: 100% -->
-                        <img src="https://cdn.oto360.net/images/car/mercedes/glb_35_4matic.webp" 
-                             class="w-full h-auto max-w-sm mx-auto product-image rounded-lg" 
-                             alt="Mercedes-Benz GLB 2025" 
-                             loading="lazy">
-                        <figcaption class="figure-caption">Mercedes-Benz GLB 2025</figcaption>
-                    </figure>
-
-                    <figure class="text-center">
-                        <!-- Đã sửa lỗi width: 1005 thành width: 100% -->
-                        <img src="https://cdn.oto360.net/images/car/mercedes/amg_sl_do_2401.webp" 
-                             class="w-full h-auto max-w-sm mx-auto product-image rounded-lg" 
-                             alt="Mercedes-Benz AMG SL Roadster 2025" 
-                             loading="lazy">
-                        <figcaption class="figure-caption">Mercedes-Benz AMG SL Roadster 2025</figcaption>
-                    </figure>
-                </div>
-
-            </div>
-        </section>
-
-        <hr class="border-gray-800 my-10">
-
-        <!-- Liên hệ (Thêm form và liên kết ngoài) -->
-        <section id="lienhe" aria-labelledby="contact-heading" class="pt-8">
-            <h2 id="contact-heading" class="text-4xl font-bold mb-6 text-[#ccac00]">Liên hệ và Đặt lịch Lái thử</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                
-                <!-- Cột Form -->
-                <div>
-                    <p class="text-lg mb-6">Vui lòng điền thông tin để nhận tư vấn hoặc đặt lịch lái thử xe ngay hôm nay. Đội ngũ chuyên gia của chúng tôi sẵn sàng hỗ trợ bạn.</p>
-                    
-                    <form action="#" method="post" aria-label="Form liên hệ" class="bg-gray-800 p-6 rounded-xl shadow-xl">
-                        <label for="name" class="block mb-2 font-medium">Họ và tên:</label>
-                        <input id="name" name="name" type="text" required class="block">
-                    
-                        <label for="email" class="block mb-2 font-medium">Email:</label>
-                        <input id="email" name="email" type="email" required class="block">
-                    
-                        <label for="message" class="block mb-2 font-medium">Bạn quan tâm đến dòng xe nào?</label>
-                        <textarea id="message" name="message" rows="4" required class="block"></textarea>
-                    
-                        <button type="submit">Gửi thông tin</button>
-                    </form>
-                </div>
-                
-                <!-- Cột Thông tin & Liên kết ngoài -->
-                <div class="p-6 bg-gray-800 rounded-xl shadow-xl">
-                    <h3 class="text-2xl font-semibold mb-4 border-b border-gray-700 pb-2">Thông tin liên hệ</h3>
-                    <p class="mb-4">
-                        <span class="font-bold">Địa chỉ:</span> 123 Đường Đẳng Cấp, Quận Trung Tâm, TP. Lộng Lẫy<br>
-                        <span class="font-bold">Điện thoại:</span> 090-XXX-XXXX
-                    </p>
-                    
-                    <div style="margin-top:20px;">
-                        <h3 class="text-2xl font-semibold mb-4 border-b border-gray-700 pb-2">Kết nối với chúng tôi</h3>
-                        <p class="text-lg">Theo dõi chúng tôi để cập nhật tin tức mới nhất:</p>
-                        <!-- Liên kết ngoài (đã đáp ứng yêu cầu) -->
-                        <a href="https://www.facebook.com/dihnamdz" target="_blank" rel="noopener noreferrer" class="text-blue-200 hover:text-blue-400 font-bold underline">
-                            Facebook (Trang cá nhân/Công ty)
-                        </a>
-                        <p class="mt-2">
-                            Bạn có thể tham khảo thêm thông tin chi tiết về xe tại:
-                            <a href="https://oto360.net/" target="_blank" rel="noopener noreferrer" class="text-green-300 hover:text-green-400 font-bold underline block">
-                                Trang tin tức Ô tô 360
-                            </a>
-                        </p>
+            <section id="inventory" class="inventory-grid">
+                <div class="car-card">
+                    <div class="card-image">
+                        <img src="https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Xe Mercedes">
+                    </div>
+                    <div class="card-content">
+                        <h3>Mercedes-Benz C300</h3>
+                        <p>2023 | 5,000 km | Tự động</p>
+                        <span class="price">2.050.000.000 VNĐ</span>
                     </div>
                 </div>
-            </div>
-        </section>
+                <div class="car-card">
+                    <div class="card-image">
+                        <img src="https://images.pexels.com/photos/909907/pexels-photo-909907.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Xe Audi">
+                    </div>
+                    <div class="card-content">
+                        <h3>Audi A6</h3>
+                        <p>2022 | 15,000 km | Tự động</p>
+                        <span class="price">2.400.000.000 VNĐ</span>
+                    </div>
+                </div>
+                <div class="car-card">
+                    <div class="card-image">
+                        <img src="https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Xe Lamborghini">
+                    </div>
+                    <div class="card-content">
+                        <h3>Lamborghini Aventador</h3>
+                        <p>2021 | 8,000 km | Tự động</p>
+                        <span class="price">40.000.000.000 VNĐ</span>
+                    </div>
+                </div>
+                <div class="car-card">
+                    <div class="card-image">
+                        <img src="https://images.pexels.com/photos/1637859/pexels-photo-1637859.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Xe Ford">
+                    </div>
+                    <div class="card-content">
+                        <h3>Ford Mustang</h3>
+                        <p>2023 | 1,000 km | Số sàn</p>
+                        <span class="price">3.200.000.000 VNĐ</span>
+                    </div>
+                </div>
+            </section>
 
+            <section class="cta-section">
+                <a href="#inventory" class="cta-button">Call to Action: Xem Toàn Bộ Xe</a>
+            </section>
+
+        </article>
+
+        <aside class="sidebar">
+            <h3>Additional Info (Thông tin thêm)</h3>
+            
+            <div class="widget">
+                <h4>News Feed (Tin tức)</h4>
+                <ul>
+                    <li>Xe mới về: VinFast VF9 2025</li>
+                    <li>Ưu đãi cuối tuần</li>
+                    <li>Đánh giá Toyota Camry 2025</li>
+                </ul>
+            </div>
+            
+            <div class="widget">
+                <h4>Tag Clouds (Loại xe)</h4>
+                <div class="tag-cloud">
+                    <span class="tag">SUV</span>
+                    <span class="tag">Sedan</span>
+                    <span class="tag">Xe điện</span>
+                    <span class="tag">Bán tải</span>
+                    <span class="tag">Coupe</span>
+                </div>
+            </div>
+
+            <div class="widget">
+                <h4>Dark Mode (Extra 3)</h4>
+                <label class="dark-mode-switch">
+                    <input type="checkbox" id="darkModeToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </aside>
     </main>
 
-    <!-- Footer -->
-    <p class="text-sm" style="opacity: 1; color: rgb(229, 231, 235); background-color: rgb(17, 24, 39);">
-  © 2025 LUXURY MOTORS | Copyright by Dinh Nam
-</p>
-        <p class="text-xs mt-1" style="color: rgb(209, 213, 219); background-color: rgb(17, 24, 39);">
-  Thiết kế bởi <strong style="color: rgb(250, 204, 21);">Dinh Nam</strong> | Được tối ưu hóa cho mọi thiết bị.
-</p>
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Đăng Ký Lái Thử</h2>
+            <form action="[DÁN LINK FORMSPREE CỦA BẠN VÀO ĐÂY]" method="POST">
+                <label for="name">Tên của bạn:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="car">Mẫu xe quan tâm:</label>
+                <input type="text" id="car" name="car">
+                
+                <button type="submit" class="cta-button">Gửi Đăng Ký</button>
+            </form>
+        </div>
+    </section>
 
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Privacy (Chính sách)</a>
+                <a href="#">Terms (Điều khoản)</a>
+            </div>
+            <div class="social-icons">
+                <span>Instagram</span>
+                <span>Facebook</span>
+                <span>TikTok</span>
+            </div>
+        </div>
     </footer>
-<script src="gallery_Version5.js"></script>
+
+    <script src="script.js"></script>
+
 </body>
 </html>
